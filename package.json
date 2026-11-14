@@ -1,0 +1,17 @@
+{
+    "name": "fix-github-project",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Offline server and checks for the archived Roblox pages in tiny-bonbon-5c31d2.",
+    "scripts": {
+        "start": "npm --prefix tiny-bonbon-5c31d2 start",
+        "dev": "npm --prefix tiny-bonbon-5c31d2 run dev",
+        "check": "npm --prefix tiny-bonbon-5c31d2 run check",
+        "test": "npm --prefix tiny-bonbon-5c31d2 test",
+        "test:all": "npm --prefix tiny-bonbon-5c31d2 run test:all"
+    },
+    "engines": {
+        "node": ">=18",
+        "python": ">=3.8"
+    }
+}

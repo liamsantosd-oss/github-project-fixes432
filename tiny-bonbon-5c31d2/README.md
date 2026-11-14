@@ -1,29 +1,48 @@
-# tiny-bonbon-5c31d2
+# Roblox archived page snapshots
 
-A static, locally archived snapshot of Roblox pages. This is not a live Roblox client: login, purchase, account, and other server-backed actions need Roblox's online services and are not provided by this archive.
+This repository is a **read-only local archive** of captured Roblox pages, assets, and recorded API responses. It is not a live Roblox client: accounts, login, purchases, submissions, and current Roblox data require Roblox's own services and are not provided here.
 
-## Pages
-- `home.html` — archived Roblox landing page.
-- `index.html` — archived Robux purchase page (the server root `/` serves this file by default).
-- `/catalog` is served from `catalog.html`, matching the original Roblox Marketplace URL. The capture remains static and does not provide live Roblox services.
-- Other root-level HTML files — archived localized, catalog, chart, login, and support pages.
+## Run it
 
-## Run locally
-Requires Python 3.8+; no package installation or build step is needed.
+Requires Python 3.8+; no npm install or third-party packages are needed.
+
+```bash
+npm start
+```
+
+Or run directly with Python:
 
 ```bash
 python3 serve.py
 ```
 
-Then open <http://localhost:3000/>. To open the landing capture, visit <http://localhost:3000/home.html>.
+Open <http://localhost:3000/>. The server binds to `0.0.0.0` by default so it works in containers and hosted previews. Choose another port or bind address with `python3 serve.py --port 8080 --host 127.0.0.1`.
 
-Alternatively, run `python3 -m http.server 3000` from this directory.
+## Routes
 
-## Performance notes
-The repository contains many captured pages and assets (about 200 MB total). Only files referenced by the page you open need to be requested by the browser, but some archived pages embed large asset maps and substantial scripts. For smaller clones, keep the exact page(s) and assets you need.
+The archive includes 101 captured HTML pages at the root. Both the original `.html` filenames and many familiar extensionless Roblox URLs are supported. For example:
 
-## Troubleshooting
-- If a local image is missing on Linux, filenames are case-sensitive; keep asset references lowercase to match the files in `assets/`.
-- If a route or button needs live Roblox data or authentication, use the official Roblox website; this archive is read-only capture content.
-- The archived Android app-promotion bumper is removed from captured pages.
-- Run `python3 check_archive.py` to check that local `src`, `href`, `poster`, and `action` references in all root HTML snapshots resolve to files. The checker skips external URLs, fragments, and embedded data URLs.
+- `/` and `/home` → archived Roblox landing page (`home.html`)
+- `/catalog` → `catalog.html` (saved items can be searched by name/creator and sorted locally)
+- `/upgrades/robux` → archived Robux page (`index.html`)
+- `/charts/top-trending` → `charts-top-trending.html`
+- `/charts/trending-in/action` → `charts-trending-in-action.html`
+- `/de/charts/trending-in/rpg` → `de-charts-trending-in-rpg.html`
+
+Captured local assets are served from `/assets/`. Unknown paths return 404; query strings are ignored for route selection and retained in the browser URL.
+
+## API replay and limits
+
+Captured GET responses are replayed locally by the page's offline fetch/XHR shim, using the recorded fixtures in the `assets/` directory. External connections are blocked by each snapshot's Content Security Policy. POST/mutation requests, authentication, and live API access are intentionally not emulated; no request reaches Roblox from this archive. Snapshots reflect their capture time and may not match current Roblox content.
+
+## Checks
+
+```bash
+npm test          # route, server, static asset, and replay regression tests
+npm run check     # validate local HTML src/href/poster/action references
+npm run test:all  # run both checks
+```
+
+## Project notes
+
+This is a static archive served by Python's standard library rather than a Node application. `package.json` provides convenient npm scripts only; there are no JavaScript runtime dependencies. The archive is large (about 200 MB); keep the `assets/` directory intact because pages depend on its captured scripts, styles, images, and API fixtures.

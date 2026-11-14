@@ -1,0 +1,17 @@
+{
+    "name": "roblox-static-snapshot",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Run and validate the locally archived Roblox page snapshots.",
+    "scripts": {
+        "start": "python3 serve.py --host 0.0.0.0 --port 3000",
+        "dev": "python3 serve.py --host 0.0.0.0 --port 3000",
+        "check": "python3 check_archive.py",
+        "test": "python3 -m unittest discover -s tests -v",
+        "test:all": "npm run check && npm test"
+    },
+    "engines": {
+        "node": ">=18",
+        "python": ">=3.8"
+    }
+}

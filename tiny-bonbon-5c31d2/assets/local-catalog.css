@@ -1,0 +1,8 @@
+/* Companion stylesheet reserved for host pages that opt to load catalog UX directly. */
+.offline-catalog-controls{display:flex;flex-wrap:wrap;align-items:end;gap:12px;padding:16px;margin:0 0 18px;border:1px solid #d7d7d7;border-radius:10px;background:#fff;color:#252525;font:14px/1.4 Arial,sans-serif}
+.offline-catalog-label{display:grid;gap:5px;font-weight:600}
+.offline-catalog-search,.offline-catalog-sort{min-width:190px;max-width:100%;padding:9px 11px;border:1px solid #999;border-radius:6px;background:#fff;color:#222;font:inherit}
+.offline-catalog-status{flex-basis:100%;margin:0;color:#555}
+.catalog-item-container.offline-hidden{display:none!important}
+.catalog-item-container.offline-unavailable .thumbnail-2d-container.shimmer{display:block;min-height:120px;background:linear-gradient(135deg,#eee,#f7f7f7);position:relative}
+.catalog-item-container.offline-unavailable .thumbnail-2d-container.shimmer:after{content:"Image not captured";position:absolute;inset:auto 0 8px;text-align:center;color:#666;font:12px Arial,sans-serif}

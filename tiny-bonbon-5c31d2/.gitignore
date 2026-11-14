@@ -1,5 +1,8 @@
 # Python cache
 __pycache__/
+.env
+.env.*
+!.env.example
 *.py[cod]
 
 # Local environment and editor files
