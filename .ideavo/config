@@ -1,0 +1,47 @@
+{
+  "systemSetup": [],
+  "templateName": "custom",
+  "projectDependencies": [
+    {
+      "name": "Install Dependencies",
+      "command": "npm install"
+    }
+  ],
+  "codeChecks": [
+    {
+      "name": "Check Archive References",
+      "command": "npm run check"
+    },
+    {
+      "name": "Run Tests",
+      "command": "npm test"
+    }
+  ],
+  "buildSteps": [],
+  "runStep": [
+    {
+      "name": "Run Dev Server",
+      "command": "python3 tiny-bonbon-5c31d2/serve.py --host 0.0.0.0 --port 4000",
+      "port": "4000"
+    }
+  ],
+  "deploySteps": [],
+  "cleanupFiles": [
+    "node_modules",
+    "tiny-bonbon-5c31d2/node_modules",
+    "tiny-bonbon-5c31d2/__pycache__",
+    "tiny-bonbon-5c31d2/tests/__pycache__",
+    "*.log"
+  ],
+  "packageManager": "npm",
+  "envPaths": [
+    {
+      "name": "default",
+      "path": ".env"
+    },
+    {
+      "name": "tiny-bonbon-5c31d2",
+      "path": "tiny-bonbon-5c31d2/.env"
+    }
+  ]
+}
